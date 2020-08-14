@@ -1,0 +1,26 @@
+"""
+Site global settings
+"""
+
+
+def site():
+    return {
+        'cors_origin_whitelist': (
+            'http://localhost:4200',
+            'http://localhost:8000',
+            'http://localhost',
+        ),
+        'allowed_hosts': [
+            'localhost:4200',
+            'localhost:8000',
+            'localhost',
+        ],
+        'db': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'farseek',
+            'USER': 'arlyxiao',
+            'PASSWORD': '',
+            'HOST': 'docker.for.mac.localhost',
+            'PORT': '5432',
+        }
+    }
