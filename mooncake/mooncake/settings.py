@@ -44,11 +44,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'corsheaders',
-
     'rest_framework',
     'rest_framework.authtoken',
+    'sass_processor',
 
-    'sass_processor'
+    'account.apps.AccountConfig',
+    'node.apps.NodeConfig'
 ]
 
 MIDDLEWARE = [
