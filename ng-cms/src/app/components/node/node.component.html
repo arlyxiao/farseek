@@ -1,0 +1,43 @@
+
+
+<div id="sidebar">
+  <ul>
+    <li class="d-flex justify-content-center align-items-center">
+      Home
+    </li>
+
+    <li class="d-flex justify-content-center align-items-center active">
+      Node
+    </li>
+  </ul>
+</div>
+
+<div id="main-content">
+  <nav class="navbar navbar-light bg-light justify-content-between">
+    <a class="navbar-brand">Node List</a>
+    <form class="form-inline">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </nav>
+
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <!-- <th scope="col">Status</th>
+        <th scope="col">Created</th> -->
+      </tr>
+    </thead>
+    <tbody *ngFor="let node of nodeResults.results" >
+      <tr>
+        <th scope="row"></th>
+        <td>{{ node.title }}</td>
+        <!-- <td>{{ node.status }}</td>
+        <td>{{ node.created_at }}</td> -->
+      </tr>
+    </tbody>
+  </table>
+</div>

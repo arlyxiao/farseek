@@ -30,7 +30,10 @@ SECRET_KEY = '+9%ld!-#h%ni$#82dsm4r66ieeyjug=ofcyu=8^1ngb%$dn9hf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = site['allowed_hosts']
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_WHITELIST = site['cors_origin_whitelist']
 
 
 # Application definition
@@ -99,7 +102,14 @@ DATABASES = {
     'default': site['db']
 }
 
+
+
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20
 }
