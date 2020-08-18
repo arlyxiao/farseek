@@ -265,5 +265,6 @@ farseek-docker/db-data
 farseek-docker/docker/nginx/default.conf
 farseek-docker/docker-compose.yml
 mooncake/mooncake/custom_site.py
+CACHE/
 
 

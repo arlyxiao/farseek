@@ -1,0 +1,90 @@
+{% load static %}
+{% load compress %}
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <title></title>
+    {% compress css %}
+      <link rel="stylesheet" type="text/x-scss" href="{% static 'style/main.scss' %}" />
+    {% endcompress %}
+  </head>
+
+  <body>
+
+    <header>
+      <div class="top d-flex align-items-center">
+        <div class="container d-flex">
+          hello
+          <ul class="menu d-flex align-items-center">
+            <li><a href="">测试我</a></li>
+            <li><a href="">测试我</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <div class="center">
+      <div class="container d-flex">
+        <div class="left">
+          <ul class="menu">
+            <li>
+              <a href="">测试我</a>
+            </li>
+            <li><a href="" class="active">测试我</a></li>
+            <li>
+              <a href="">测试我</a>
+            </li>
+          </ul>
+
+          <div class="topics">
+            <div class="topic-item">
+              <a class="title" href="">2020赛季中超联赛第6轮大连赛区比赛继续进行</a>
+              <p class="intro">
+                在赛前的新闻发布会上，广州恒大主帅卡纳瓦罗携球员蒋光太出席了新闻发布会并回答了记者提问.
+              </p>
+            </div>
+
+            <div class="topic-item">
+              <a class="title" href="">2020赛季中超联赛第6轮大连赛区比赛继续进行</a>
+              <p class="intro">
+                在赛前的新闻发布会上，广州恒大主帅卡纳瓦罗携球员蒋光太出席了新闻发布会并回答了记者提问.
+              </p>
+            </div>
+
+            <div class="topic-item">
+              <a class="title" href="">2020赛季中超联赛第6轮大连赛区比赛继续进行</a>
+              <p class="intro">
+                Many companies featured on Money advertise with us. Opinions are our own, but compensation and in-depth research determine where and how companies may appear. Learn more about how we make money.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="right">
+          
+        </div>
+      </div>
+      
+    </div>
+
+
+    <footer class="d-flex">
+
+      <div class="container">
+        <ul class="d-flex justify-content-center">
+          <li><a href="">关于我们</a></li>
+          <li><a href="">联系我们</a></li>
+        </ul>
+      </div>
+      
+    </footer>
+
+  </body>
+</html>
