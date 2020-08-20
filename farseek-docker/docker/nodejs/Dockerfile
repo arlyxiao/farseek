@@ -17,7 +17,7 @@ RUN apt-get update \
 RUN apt-get update && apt-get install -y --allow-unauthenticated chromium-chromedriver
 
 # set working directory
-WORKDIR /var/www/ng-cms
+WORKDIR /var/www
 
 # add `/app/node_modules/.bin` to $PATH
 ENV PATH /var/www/ng-cms/node_modules/.bin:$PATH
@@ -34,4 +34,4 @@ RUN npm install -g @angular/cli
 # COPY . /app
 
 # start app
-CMD ng serve --host 0.0.0.0 --port 4200
+# CMD ng serve --host 0.0.0.0 --port 4200

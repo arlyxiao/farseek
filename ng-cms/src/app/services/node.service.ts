@@ -11,7 +11,7 @@ import { Node, NodeResult } from '../models/Node';
 })
 export class NodeService {
   // url: string = 'https://jsonplaceholder.typicode.com/todos';
-  url: string = 'http://192.168.1.6:8000/api/nodes';
+  url: string = 'http://192.168.31.148/api/nodes';
 
   constructor(private http:HttpClient) { }
 
