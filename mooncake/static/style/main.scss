@@ -1,5 +1,10 @@
 @import "../vendor/bootstrap/bootstrap.min.css";
 
+
+.container {
+  max-width: 800px;
+}
+
 a {
   color: #2c506d;
   text-decoration: none;
@@ -52,6 +57,7 @@ header {
       li {
         list-style: none;
         display: inline;
+        line-height: 32px;
         margin: 0 15px 0 0;
 
         a {
@@ -87,20 +93,6 @@ header {
     }
   }
 
-  .right {
-    font-size: 14px;
-    width: 420px;
-    height: 200px;
-    // box-shadow: 0 0 10px #999;
-    // border-radius: 5px;
-    // border: 1px solid #dedede;
-    margin: 0 0 20px 80px;
-
-    img {
-      width: 20px;
-      margin-right: 10px;
-    }
-  }
 }
 
 
@@ -111,6 +103,8 @@ footer {
 
   ul {
     margin: 20px 0 0 0;
+    width: 100%;
+    padding: 0;
 
     li {
       list-style: none;

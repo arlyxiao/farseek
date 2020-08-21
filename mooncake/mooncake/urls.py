@@ -23,6 +23,7 @@ router = routers.DefaultRouter()
 router.register(r'nodes', views.NodeViewSet)
 
 urlpatterns = [
+    path('tinymce/', include('tinymce.urls')),
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('api/', include(router.urls)),
