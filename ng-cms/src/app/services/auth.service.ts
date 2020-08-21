@@ -10,7 +10,7 @@ export class AuthInterceptor implements HttpInterceptor {
       setHeaders: {
         'Content-Type' : 'application/json; charset=utf-8',
         'Accept'       : 'application/json',
-        'Authorization': `Token dc7f5d151e2506724079973a0ad4e43b512882e5`,
+        'Authorization': `Token 2b41b57a31927286bd081eb3acd334782f42f322`,
       },
     });
 
