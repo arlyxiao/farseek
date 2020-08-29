@@ -3,8 +3,10 @@ from django.contrib.auth import login, authenticate, REDIRECT_FIELD_NAME
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import (
-    LogoutView as BaseLogoutView, PasswordChangeView as BasePasswordChangeView,
-    PasswordResetDoneView as BasePasswordResetDoneView, PasswordResetConfirmView as BasePasswordResetConfirmView,
+    LogoutView as BaseLogoutView,
+    PasswordChangeView as BasePasswordChangeView,
+    PasswordResetDoneView as BasePasswordResetDoneView,
+    PasswordResetConfirmView as BasePasswordResetConfirmView,
 )
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.crypto import get_random_string
@@ -20,12 +22,13 @@ from django.views.generic import View, FormView
 from django.conf import settings
 
 from .utils import (
-    send_activation_email, send_reset_password_email, send_forgotten_username_email, send_activation_change_email,
+    send_activation_email,
+    send_reset_password_email,
 )
 from .forms import (
-    SignInViaUsernameForm, SignInViaEmailForm, SignInViaEmailOrUsernameForm, SignUpForm,
-    RestorePasswordForm, RestorePasswordViaEmailOrUsernameForm, RemindUsernameForm,
-    ResendActivationCodeForm, ResendActivationCodeViaEmailForm, ChangeProfileForm, ChangeEmailForm,
+    SignInViaEmailOrUsernameForm,
+    SignUpForm,
+    RestorePasswordViaEmailOrUsernameForm,
 )
 from .models import Activation
 
@@ -94,11 +97,6 @@ class SignUpView(GuestOnlyView, FormView):
 
         user.save()
 
-        # Change the username to the "user_ID" form
-        if settings.DISABLE_USERNAME:
-            user.username = f'user_{user.id}'
-            user.save()
-
         if settings.ENABLE_USER_ACTIVATION:
             code = get_random_string(20)
 
@@ -140,45 +138,13 @@ class ActivateView(View):
         return redirect('account:login')
 
 
-class ResendActivationCodeView(GuestOnlyView, FormView):
-    template_name = 'account/resend_activation_code.html'
-
-    @staticmethod
-    def get_form_class(**kwargs):
-        if settings.DISABLE_USERNAME:
-            return ResendActivationCodeViaEmailForm
-
-        return ResendActivationCodeForm
-
-    def form_valid(self, form):
-        user = form.user_cache
-
-        activation = user.activation_set.first()
-        activation.delete()
-
-        code = get_random_string(20)
-
-        act = Activation()
-        act.code = code
-        act.user = user
-        act.save()
-
-        send_activation_email(self.request, user.email, code)
-
-        messages.success(self.request, _('A new activation code has been sent to your email address.'))
-
-        return redirect('account:resend_activation_code')
-
 
 class RestorePasswordView(GuestOnlyView, FormView):
     template_name = 'account/restore_password.html'
 
     @staticmethod
     def get_form_class(**kwargs):
-        if settings.RESTORE_PASSWORD_VIA_EMAIL_OR_USERNAME:
-            return RestorePasswordViaEmailOrUsernameForm
-
-        return RestorePasswordForm
+        return RestorePasswordViaEmailOrUsernameForm
 
     def form_valid(self, form):
         user = form.user_cache
@@ -193,39 +159,24 @@ class RestorePasswordView(GuestOnlyView, FormView):
         return redirect('account:restore_password_done')
 
 
-class ChangeProfileView(LoginRequiredMixin, FormView):
-    template_name = 'account/profile/change_profile.html'
-    form_class = ChangeProfileForm
+class RestorePasswordDoneView(BasePasswordResetDoneView):
+    template_name = 'account/restore_password_done.html'
 
-    def get_initial(self):
-        user = self.request.user
-        initial = super().get_initial()
-        initial['first_name'] = user.first_name
-        initial['last_name'] = user.last_name
-        return initial
+
+class RestorePasswordConfirmView(BasePasswordResetConfirmView):
+    template_name = 'account/restore_password_confirm.html'
 
     def form_valid(self, form):
-        user = self.request.user
-        user.first_name = form.cleaned_data['first_name']
-        user.last_name = form.cleaned_data['last_name']
-        user.save()
+        form.save()
 
-        messages.success(self.request, _('Profile data has been successfully updated.'))
+        messages.success(self.request, _('密码重置成功，请重新登录'))
 
-        return redirect('account:change_profile')
+        return redirect('account:login')
 
 
-class RemindUsernameView(GuestOnlyView, FormView):
-    template_name = 'account/remind_username.html'
-    form_class = RemindUsernameForm
 
-    def form_valid(self, form):
-        user = form.user_cache
-        send_forgotten_username_email(user.email, user.username)
-
-        messages.success(self.request, _('Your username has been successfully sent to your email.'))
-
-        return redirect('accounts:remind_username')
+class LogOutView(LoginRequiredMixin, BaseLogoutView):
+    template_name = 'index.html'
 
 
 class ChangePasswordView(BasePasswordChangeView):
@@ -241,22 +192,3 @@ class ChangePasswordView(BasePasswordChangeView):
         messages.success(self.request, _('Your password was changed.'))
 
         return redirect('account:change_password')
-
-
-class RestorePasswordConfirmView(BasePasswordResetConfirmView):
-    template_name = 'account/restore_password_confirm.html'
-
-    def form_valid(self, form):
-        form.save()
-
-        messages.success(self.request, _('密码重置成功，请重新登录'))
-
-        return redirect('account:login')
-
-
-class RestorePasswordDoneView(BasePasswordResetDoneView):
-    template_name = 'account/restore_password_done.html'
-
-
-class LogOutView(LoginRequiredMixin, BaseLogoutView):
-    template_name = 'index.html'

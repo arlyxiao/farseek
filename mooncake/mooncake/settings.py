@@ -144,28 +144,20 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Account
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.yeah.net'
-EMAIL_HOST_USER = 'farseek@yeah.net'
-DEFAULT_FROM_EMAIL = 'farseek@yeah.net'
-EMAIL_HOST_PASSWORD = 'ECSPYVUXTPFVPFGJ'
-EMAIL_PORT = 25
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
+EMAIL_HOST = site['email']['host']
+EMAIL_HOST_USER = site['email']['host_user']
+DEFAULT_FROM_EMAIL = site['email']['from_email']
+EMAIL_HOST_PASSWORD = site['email']['password']
+EMAIL_PORT = site['email']['port']
+EMAIL_USE_TLS = site['email']['use_tls']
+EMAIL_USE_SSL = site['email']['use_ssl']
 ENABLE_USER_ACTIVATION = True
 EMAIL_ACTIVATION_AFTER_CHANGING = True
 
-DISABLE_USERNAME = False
-LOGIN_VIA_EMAIL = False
-LOGIN_VIA_EMAIL_OR_USERNAME = True
 LOGIN_REDIRECT_URL = 'index'
 LOGIN_URL = 'account:login'
 USE_REMEMBER_ME = False
 
-RESTORE_PASSWORD_VIA_EMAIL_OR_USERNAME = True
-
-SIGN_UP_FIELDS = ['username', 'email', 'password1', 'password2']
-if DISABLE_USERNAME:
-    SIGN_UP_FIELDS = ['email', 'password1', 'password2']
 
 
 # Internationalization

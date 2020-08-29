@@ -23,14 +23,6 @@ def send_activation_email(request, email, code):
     send_mail(email, 'activate_profile', context)
 
 
-def send_activation_change_email(request, email, code):
-    context = {
-        'subject': _('Change email'),
-        'uri': request.build_absolute_uri(reverse('account:change_email_activation', kwargs={'code': code})),
-    }
-
-    send_mail(email, 'change_email', context)
-
 
 def send_reset_password_email(request, email, token, uid):
     context = {
@@ -40,12 +32,3 @@ def send_reset_password_email(request, email, token, uid):
     }
 
     send_mail(email, 'restore_password_email', context)
-
-
-def send_forgotten_username_email(email, username):
-    context = {
-        'subject': _('Your username'),
-        'username': username,
-    }
-
-    send_mail(email, 'forgotten_username', context)

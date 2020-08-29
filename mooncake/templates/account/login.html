@@ -45,12 +45,7 @@
                 <a href="{% url 'account:signup' %}">新用户注册?</a>
             </p>
 
-            <button class="confirm btn btn-secondary btn-lg">
-                <i class="fas fa-spinner fa-spin hide" aria-hidden="true"></i>
-                <span class="text">
-                    确定
-                </span>
-            </button>
+            {% include "./shared/_submit_button.html" with btn_text="确定" %}
 
         </form>
    </div>

@@ -28,6 +28,10 @@ input:-webkit-autofill, input:focus:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 100px rgb(255, 255, 255) inset;
 }
 
+input:invalid {
+  box-shadow: none;
+}
+
 .input-wrapper {
   position: relative;
   height: 65px;

@@ -6,13 +6,18 @@ Site global settings
 def site():
     return {
         'cors_origin_whitelist': (
-            'http://localhost:4200',
-            'http://localhost:8000',
+            'http://192.168.1.6:4200',
+            'http://192.168.1.6:8000',
+            'http://192.168.31.148:8000',
+            'http://192.168.1.6',
+            'http://192.168.31.148',
             'http://localhost',
         ),
         'allowed_hosts': [
-            'localhost:4200',
-            'localhost:8000',
+            '192.168.1.6:4200',
+            '192.168.1.6:8000',
+            '192.168.1.6',
+            '192.168.31.148',
             'localhost',
         ],
         'db': {
@@ -20,7 +25,17 @@ def site():
             'NAME': 'farseek',
             'USER': 'arlyxiao',
             'PASSWORD': '',
-            'HOST': 'docker.for.mac.localhost',
+            # 'HOST': 'docker.for.mac.localhost',
+            'HOST': 'host.docker.internal',
             'PORT': '5432',
-        }
+        },
+        'email': {
+            'host': 'smtp.yeah.net',
+            'host_user': 'farseek',
+            'from_email': 'farseek@yeah.net',
+            'password': '',
+            'port': 25,
+            'use_tls': True,
+            'use_ssl': False,
+        },
     }
