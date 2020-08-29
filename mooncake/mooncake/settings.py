@@ -54,6 +54,7 @@ INSTALLED_APPS = [
 
     'node.apps.NodeConfig',
     'account.apps.AccountConfig',
+    'ask.apps.AskConfig',
 ]
 
 MIDDLEWARE = [

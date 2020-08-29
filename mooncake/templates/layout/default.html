@@ -1,6 +1,8 @@
 {% load static %}
 {% load compress %}
 
+{% load node_extras %}
+
 
 <!DOCTYPE html>
 <html>
@@ -25,7 +27,7 @@
   <body>
 
     <header>
-      <div class="top d-flex align-items-center">
+      <div class="top d-flex align-items-center {{ request.path|header_top_style }}">
         <div class="container d-flex">
           <a href="/" class="logo">Farseek</a>
 
@@ -35,7 +37,7 @@
                 <a href="/">首页</a>
               </li>
               <li>
-                <a href="">问答</a>
+                <a href="/ask">问答</a>
               </li>
             </ul>
 

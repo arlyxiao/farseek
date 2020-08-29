@@ -15,6 +15,10 @@ header {
     color: #fff;
     height: 50px;
 
+    &.ask {
+      background: #17a2b8;
+    }
+
     .logo {
       font-size: 22px;
       font-weight: $bold;
@@ -129,7 +133,7 @@ header {
         margin: 0 15px 0 0;
 
         a {
-          color: #9c9c9c;
+          color: #837c7c;
 
           &.active {
             color: #2c506d;
