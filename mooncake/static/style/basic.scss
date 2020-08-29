@@ -1,0 +1,67 @@
+$thin: 100;
+$lighter: 200;
+$light: 300;
+$regular: 400;
+$medium: 500;
+$semibold: 600;
+$bold: 700;
+$extrabold: 800;
+$black: 900;
+
+
+.hide {
+  display: none;
+}
+
+
+.container {
+  max-width: 800px;
+}
+
+a {
+  color: #2c506d;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+input:-webkit-autofill, input:focus:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 100px rgb(255, 255, 255) inset;
+}
+
+.input-wrapper {
+  position: relative;
+  height: 65px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #999;
+  border: 0;
+  border-bottom: 1px solid #dedede;
+  margin-bottom: 18px;
+  padding: 0 15px 0 15px;
+
+  .input-hint {
+    position: absolute;
+    color: #9B9B9B;
+    font-size: 16px;
+    line-height: 18px;
+    font-weight: $regular;
+
+    &.active {
+      transform: translateY(-15px);
+      color: #515AFC;
+      font-size: 12px;
+      font-weight: $bold;
+    }
+  }
+
+  input {
+    border: 0;
+    padding: 0;
+    outline: none;
+    margin-top: 15px;
+
+    &:focus {
+      outline: none;
+      background: #fff;
+    }
+  }
+}

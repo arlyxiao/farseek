@@ -1,0 +1,82 @@
+{% load static %}
+{% load compress %}
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
+    <title>farseek.top</title>
+    {% compress css %}
+      <link rel="stylesheet" type="text/x-scss" href="{% static 'style/main.scss' %}" />
+    {% endcompress %}
+
+    {% compress js %}
+      <script src="{% static 'vendor/jquery/jquery-3.4.1.slim.min.js' %}"></script>
+      <script src="{% static 'js/main.js' %}" type="text/javascript" charset="utf-8"></script>
+    {% endcompress %}
+
+  </head>
+
+  <body>
+
+    <header>
+      <div class="top d-flex align-items-center">
+        <div class="container d-flex">
+          <div class="logo">
+            Farseek
+          </div>
+
+          <div class="menu d-flex justify-content-between align-items-center w-100">
+            <ul class="left">
+              <li>
+                <a href="/">首页</a>
+              </li>
+              <li>
+                <a href="">问答</a>
+              </li>
+            </ul>
+
+            <ul class="right">
+              {% if user.is_authenticated %}
+              <li><a href="{% url 'account:logout' %}">退出</a></li>
+              {% else %}
+                <li><a href="{% url 'account:login' %}">登录</a></li>
+                <li><a href="{% url 'account:signup' %}">注册</a></li>
+              {% endif %}
+            </ul>
+          </div>
+
+          
+        </div>
+      </div>
+    </header>
+
+    <div class="center">
+      <div class="container d-flex">
+
+        {% block content %}
+        {% endblock %}
+
+      </div>
+      
+    </div>
+
+
+    <footer>
+
+      <div class="container">
+        <ul class="d-flex justify-content-center">
+          <li><a href="">关于我们</a></li>
+          <li><a href="">联系我们</a></li>
+        </ul>
+      </div>
+      
+    </footer>
+
+  </body>
+</html>

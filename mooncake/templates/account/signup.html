@@ -1,0 +1,65 @@
+{% extends 'layout/default.html' %}
+
+
+{% block content %}
+
+<div class="signup-page d-flex flex-column justify-content-center align-items-center w-100">
+    
+    {% if messages %}
+    <ul class="page-messages w-100">
+        {% for message in messages %}
+            <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+
+    <form method="post" class="d-flex flex-column justify-content-center align-items-center">
+
+        {% csrf_token %}
+
+        <h4>新用户注册</h4>
+
+        {{ form.email.errors }}
+        {{ form.username.errors }}
+        {{ form.password1.errors }}
+        {{ form.password2.errors }}
+
+        <div class="field-list">
+
+            <div class="input-wrapper d-flex flex-column justify-content-center">
+                <div class="input-hint">邮箱</div>
+                {{ form.email }}
+            </div>
+
+            <div class="input-wrapper d-flex flex-column justify-content-center">
+                <div class="input-hint">用户名</div>
+                {{ form.username }}
+            </div>
+
+            <div class="input-wrapper d-flex flex-column justify-content-center">
+                <div class="input-hint">密码</div>
+                {{ form.password1 }}
+            </div>
+
+            <div class="input-wrapper d-flex flex-column justify-content-center">
+                <div class="input-hint">确认密码</div>
+                {{ form.password2 }}
+            </div>
+
+        </div>
+
+        <p class="user-account">
+            <a href="{% url 'account:login' %}">已经有账号?</a>
+        </p>
+
+        <button class="confirm btn btn-secondary btn-lg" type="submit">确定</button>
+
+    </form>
+
+</div>
+
+
+
+{% endblock %}
+

@@ -22,10 +22,13 @@ from node import views
 router = routers.DefaultRouter()
 router.register(r'nodes', views.NodeViewSet)
 
+
 urlpatterns = [
     path('tinymce/', include('tinymce.urls')),
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+    path('account/', include('account.urls')),
 ]

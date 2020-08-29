@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     'compressor',
     'tinymce',
 
-    'node.apps.NodeConfig'
+    'node.apps.NodeConfig',
+    'account.apps.AccountConfig',
 ]
 
 MIDDLEWARE = [
@@ -61,6 +62,7 @@ MIDDLEWARE = [
 
     'corsheaders.middleware.CorsMiddleware',
 
+    # 'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -123,25 +125,54 @@ REST_FRAMEWORK = {
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    # },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {
+            'min_length': 6,
+        }
     },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    # },
 ]
+
+# Account
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yeah.net'
+EMAIL_HOST_USER = 'farseek@yeah.net'
+DEFAULT_FROM_EMAIL = 'farseek@yeah.net'
+EMAIL_HOST_PASSWORD = 'ECSPYVUXTPFVPFGJ'
+EMAIL_PORT = 25
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+ENABLE_USER_ACTIVATION = True
+EMAIL_ACTIVATION_AFTER_CHANGING = True
+
+DISABLE_USERNAME = False
+LOGIN_VIA_EMAIL = False
+LOGIN_VIA_EMAIL_OR_USERNAME = True
+LOGIN_REDIRECT_URL = 'index'
+LOGIN_URL = 'account:login'
+USE_REMEMBER_ME = False
+
+RESTORE_PASSWORD_VIA_EMAIL_OR_USERNAME = True
+
+SIGN_UP_FIELDS = ['username', 'email', 'password1', 'password2']
+if DISABLE_USERNAME:
+    SIGN_UP_FIELDS = ['email', 'password1', 'password2']
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-Hans'
 
 # TIME_ZONE = 'UTC'
 TIME_ZONE = 'Asia/Shanghai'

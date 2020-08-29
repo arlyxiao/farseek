@@ -1,15 +1,6 @@
 @import "../vendor/bootstrap/bootstrap.min.css";
-
-
-.container {
-  max-width: 800px;
-}
-
-a {
-  color: #2c506d;
-  text-decoration: none;
-  font-weight: 500;
-}
+@import "../vendor/fontawesome-free-5.14.0-web/all.min.css";
+@import "basic.scss";
 
 
 header {
@@ -19,19 +10,43 @@ header {
     color: #fff;
     height: 50px;
 
-    ul.menu {
-      margin: 0 0 0 20px;
+    .logo {
+      font-size: 22px;
+      font-weight: $bold;
+    }
 
-      a {
-        color: #fff;
-        font-size: 14px;
-        font-weight: 500;
+    .menu {
+      ul {
+        margin: 0;
+        padding: 0;
+  
+        a {
+          color: #fff;
+          font-size: 14px;
+          font-weight: $bold;
+        }
+  
+        li {
+          list-style: none;
+          display: inline;
+          margin: 0 0 0 0;
+        }
       }
 
-      li {
-        list-style: none;
-        display: inline;
-        margin: 0 24px 0 0;
+      ul.left {
+        margin: 0 0 0 25px;
+
+        li {
+          margin: 0 15px 0 0;
+        }
+      }
+
+      ul.right {
+        margin: 0;
+
+        li {
+          margin: 0 0 0 15px;
+        }
       }
     }
   }
@@ -39,15 +54,63 @@ header {
 
 .center {
   margin: 50px 0 0 0;
+  min-height: 450px;
 
-  .left {
+  ul.page-messages {
+    margin: 0 auto;
+    padding: 0;
+
+    li {
+      list-style: none;
+    }
+  }
+
+  form {
+    margin: 0 auto;
+
+    h4 {
+      text-align: center;
+      margin: 0 auto 30px auto;
+    }
+
+    a {
+      font-size: 14px;
+    }
+
+    ul.errorlist {
+      width: 100%;
+      text-align: left;
+      padding-left: 15px;
+      margin: 0 0 10px 0;
+
+      li {
+        color: red;
+      }
+    }
+
+    .field-list {
+      width: 420px;
+    }
+
+    p.user-account {
+      width: 100%;
+    }
+
+    button.confirm {
+      width: 50%;
+      margin: 10px auto 0 auto;
+    }
+  }
+
+
+  .main {
     width: 100%;
     // box-shadow: 0 0 10px #999;
     // border-radius: 5px;
 
     & > ul.menu {
       font-size: 14px;
-      font-weight: 500;
+      font-weight: $medium;
       border: 1px solid #dedede;
       background: #faf9f9;
       border-radius: 5px;
@@ -69,6 +132,7 @@ header {
         }
       }
     }
+    
 
     .topics {
       margin: 20px 0 0 0;
@@ -96,6 +160,8 @@ header {
 }
 
 
+
+
 footer {
   font-size: 14px;
   border-top: 1px solid #dedede;
@@ -112,6 +178,24 @@ footer {
 
       a {
         margin: 0 10px 0 10px;
+      }
+    }
+  }
+}
+
+
+
+@media (max-width: 567px) {
+  .center {
+    form {
+      width: 90%;
+
+      .field-list {
+        width: 100%;
+      }
+
+      button.confirm {
+        width: 100%;
       }
     }
   }
